@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>барабанная: брендгайд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500&family=Comfortaa:wght@500&family=PT+Serif:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#ffe100;--pink:#ff00d0;--yellow:#ffe100;--ink:#141414;--mut:#8b8a86;--line:#ebe9e4;--bg:#fafaf8}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font:15px/1.5 Ubuntu,system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit}
+aside{width:250px;position:fixed;left:0;top:60px;bottom:0;overflow-y:auto;overscroll-behavior:contain;background:var(--bg);padding:22px 20px;display:flex;flex-direction:column;gap:4px;z-index:5}
+.brand{font-size:17px;color:var(--pink);white-space:nowrap;margin-bottom:22px}
+.menu a{display:block;text-decoration:none;padding:7px 10px;border-radius:9px;color:var(--ink)}
+.menu a:hover{background:#f4f2ef}
+.menu a.on{background:var(--yellow);color:var(--ink)}
+.menu .grp{font-size:13px;color:var(--mut);margin:18px 10px 6px}
+.menu .sub{padding-left:22px;font-size:14px}
+/* logo and the generator link stay on top while the menu scrolls under them */
+.ahead{position:sticky;top:-22px;margin:-22px -20px 0;padding:22px 20px 8px;background:#fff;z-index:2;display:flex;flex-direction:column;gap:4px}
+.tool{display:block;text-decoration:none;padding:7px 10px;border-radius:9px;background:var(--pink);color:#fff;font-weight:500}
+.tool:hover{background:#e600bb}
+main{margin-left:250px;min-width:0;padding:108px 56px 120px;max-width:1500px}
+/* the same top menu as in the generator */
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;display:flex;align-items:center;gap:28px;padding:0 24px;background:#fff;z-index:20}
+.topbar #brand canvas{display:block}.tbl,.tbnav a,.tbeye{color:var(--ink);text-decoration:none;padding:7px 12px;border-radius:10px;font-size:14px}
+.tbl:hover,.tbnav a:hover{background:#f4f2ef}.tbl.on{background:var(--yellow)}
+.tbnav{display:flex;gap:4px;margin-left:auto}
+.tbeye{border:1px solid var(--line);border-radius:22px}
+[id]{scroll-margin-top:72px}
+h1{font-size:44px;font-weight:500;margin:0 0 8px;letter-spacing:-.01em}
+.hero{position:relative;border-radius:3px;overflow:hidden;margin-bottom:8px;background:var(--pink)}
+.hero canvas{display:block;width:100%;outline:0;box-shadow:none;border-radius:0}
+.ht{position:absolute;left:40px;bottom:36px;max-width:560px;color:#fff}
+.ht h1{font-size:52px;line-height:1.02;margin:0 0 14px}
+.ht .lead{color:#fff;font-size:17px;max-width:520px;margin:0}
+h2{font-size:26px;font-weight:500;margin:56px 0 6px}
+h3{font-size:19px;font-weight:500;color:var(--ink);margin:40px 0 12px}
+p{max-width:680px;margin:0 0 12px}
+.lead{font-size:18px;color:#444;max-width:720px}
+section{margin-top:40px}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.row.tight{gap:6px}   /* linked posts sit close, like in the feed */
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figcaption{font-size:13px;color:var(--mut);max-width:210px;white-space:pre-wrap}
+canvas{display:block;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+figure canvas{outline:1px solid var(--line);outline-offset:0}
+.blk{display:grid;grid-template-columns:minmax(0,1fr) 220px;column-gap:48px;align-items:start}
+.blk>h2,.blk>h3{grid-column:1/-1}
+.live{color:var(--ink);font-weight:500;text-decoration:none;border-bottom:2px solid var(--yellow)}
+.live:hover{background:var(--yellow)}
+.phone{width:400px;border:12px solid #111;border-radius:52px;background:#fff;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.scr{padding:14px 0 0;font:13px -apple-system,system-ui,sans-serif;color:#111}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:0 26px 10px;font-size:14px}
+.sb i{width:110px;height:30px;background:#111;border-radius:20px}
+.ih{display:flex;justify-content:space-between;align-items:center;padding:6px 18px 14px;font-size:20px}
+.ih b{font-size:19px;flex:1;margin-left:16px}
+.ip{display:flex;align-items:center;gap:22px;padding:0 18px}
+.ava{border-radius:50%!important;box-shadow:none!important}
+.st{flex:1}.nm{height:22px}
+.nums{display:flex;gap:18px;margin-top:6px}.nums div{display:flex;flex-direction:column;font-size:13px}.nums b{font-size:17px}
+.bio{padding:12px 18px 14px;line-height:1.45}.bio a{color:#3156d6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.grid canvas{width:100%!important;height:auto!important;border-radius:0;box-shadow:none}
+.main canvas{outline:2px solid var(--orange);outline-offset:3px}
+.tag{display:inline-block;background:var(--orange);color:var(--ink);font-weight:500;border-radius:99px;padding:0 8px;margin-right:6px;font-size:12px}
+.msg{width:210px;height:100px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:12px;background:#fff;border-radius:3px;outline:1px solid var(--line);font:14px -apple-system,system-ui,sans-serif;white-space:pre}
+.msg span{align-self:flex-end;background:#2b8cff;color:#fff;border-radius:16px 16px 4px 16px;padding:6px 11px}
+.mc>:first-child{margin-top:0}
+.mg{display:flex;flex-direction:column;gap:22px}
+.note{font-size:13px;line-height:1.45;color:#5f5d58;border-left:2px solid var(--orange);padding-left:12px}
+.note p{margin:0}
+.note.no{border-left-color:var(--pink)}
+.note.no b{color:var(--pink);font-weight:500;margin-right:4px}
+.note canvas{margin-bottom:10px;box-shadow:none;outline:1px solid var(--line)}
+.sw{display:flex;gap:14px;flex-wrap:wrap}
+.chip{width:150px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.chip i{display:block;height:80px}
+.chip div{padding:8px 10px;font-size:13px}
+.chip b{display:block;font-weight:500}
+.chip.big{width:auto;flex:1 1 0;min-width:140px;max-width:200px}.chip.big i{height:120px}
+.pair{width:210px}
+.grads{display:flex;flex-direction:column;gap:10px;max-width:720px}
+.grads div{display:flex;align-items:center;gap:16px;font-size:14px;color:#555}
+.grads i{flex:none;width:260px;height:44px;border-radius:8px;border:1px solid var(--line)}
+.grads b{color:var(--ink);font-weight:500;margin-right:6px}
+code{font:inherit;color:var(--pink)}
+.rule{font-size:20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;max-width:720px;margin:14px 0}
+.rule span{color:var(--pink)}
+ul{max-width:680px;padding-left:20px;margin:0 0 12px}
+li{margin:4px 0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+@media (max-width:860px){
+  .ht{left:18px;right:18px;bottom:20px}.ht h1{font-size:32px}.ht .lead{font-size:15px}
+  aside{position:static;width:auto;height:auto}
+  .menu{display:flex;flex-wrap:wrap;gap:4px}.menu .sub,.menu .grp{display:none}
+  main{margin-left:0;padding:28px 16px 80px}
+  .blk{grid-template-columns:1fr}.mg{margin-top:16px}
+  h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="tblogo" href="guide.html" title="бренд гайд"><span id="brand"></span></a><a class="tbl on" href="guide.html">бренд гайд</a>
+  <nav class="tbnav"><a href="assets.html#posts">пост</a><a href="assets.html#profile">профиль</a></nav><a class="tbeye" href="assets.html#preview">превью</a></header>
+<aside>
+
+  <nav class="menu">
+    <div class="grp">брендгайд</div>
+    <a href="#color" data-s="color">цвет</a>
+    <a class="sub" href="#color-palette" data-s="color">палитра</a>
+    <a class="sub" href="#color-pairs" data-s="color">сочетания</a>
+    <a href="#logo" data-s="logo">лого</a>
+    <a class="sub" href="#logo-rule" data-s="logo">правило</a>
+    <a class="sub" href="#logo-levels" data-s="logo">уровни</a>
+    <a class="sub" href="#logo-words" data-s="logo">слова</a>
+    <a class="sub" href="#logo-type" data-s="logo">характер</a>
+    <a class="sub" href="#logo-colors" data-s="logo">цвет</a>
+    <a href="#rings" data-s="rings">кольца</a>
+    <a class="sub" href="#rings-colors" data-s="rings">цвет колец</a>
+    <a class="sub" href="#rings-build" data-s="rings">сборка</a>
+    <a class="sub" href="#rings-count" data-s="rings">количество и размер</a>
+    <a class="sub" href="#rings-plain" data-s="rings">только искажение</a>
+    <a class="sub" href="#rings-surfaces" data-s="rings">на фото и тексте</a>
+    <a href="#stick" data-s="stick">колотушка</a>
+    <a class="sub" href="#stick-shape" data-s="stick">форма</a>
+    <a class="sub" href="#stick-grad" data-s="stick">градиент</a>
+    <a class="sub" href="#stick-blur" data-s="stick">блюр</a>
+    <a class="sub" href="#stick-pos" data-s="stick">положение</a>
+    <a href="#motion" data-s="motion">движение</a>
+    <a class="sub" href="#motion-hit" data-s="motion">удар</a>
+    <a class="sub" href="#motion-wave" data-s="motion">волна</a>
+    <a class="sub" href="#motion-time" data-s="motion">таймлайн</a>
+    <a href="#use" data-s="use">примеры</a>
+    <a class="sub" href="#use-insta" data-s="use">инстаграм</a>
+    <a class="sub" href="#use-carousel" data-s="use">карусель</a>
+  </nav>
+</aside>
+<main>
+  <header class="hero"><canvas id="hero"></canvas><div class="ht"><h1>барабанная мастерская петра атапина</h1><p class="lead">Бренд построен на одном моменте — ударе по бубну. От точки удара расходятся кольца: плотные и яркие у центра, реже и прозрачнее к краю. Тот же ритм повторяет лого.</p></div></header>
+
+  <!-- ─────────── COLOR ─────────── -->
+  <section id="color">
+    <div class="blk"><h2>Цвет</h2><div class="mc">
+    <p>Два фирменных цвета — розовый и жёлтый — плюс белый и тёмный для текста. Объём и свет строятся только ими: тёплый жёлтый на свету, холодный розовый в тени.</p>
+    </div><div class="mg"><div class="note no"><p><b>нельзя</b> серые и чёрные тени, затемнение для объёма</p></div></div></div>
+    <div class="blk"><h3 id="color-palette">палитра</h3><div class="mc">
+    <div class="sw">
+      <div class="chip big"><i style="background:#ff00d0"></i><div><b>розовый</b>#FF00D0<br>rgb 255 0 208</div></div>
+      <div class="chip big"><i style="background:#ffe100"></i><div><b>жёлтый</b>#FFE100<br>rgb 255 225 0</div></div>
+      <div class="chip big"><i style="background:#ffffff;border-bottom:1px solid var(--line)"></i><div><b>белый</b>#FFFFFF<br>rgb 255 255 255</div></div>
+      <div class="chip big"><i style="background:#141414"></i><div><b>тёмный</b>#141414<br>только текст и лого</div></div>
+    </div>
+    </div><div class="mg"><div class="note"><p>Оранжевый — не отдельный цвет: он появляется только внутри градиента колец, на стыке розового и жёлтого.</p></div><div class="note no"><p><b>нельзя</b> тёмный #141414 как фон или как цвет колец</p></div></div></div>
+    <div class="blk"><h3 id="color-pairs">сочетания</h3><div class="mc">
+    <p>Фон определяет всё остальное: какой градиент колец, каким цветом текст и лого.</p>
+    <div class="row" id="pairs"></div>
+    </div><div class="mg"><div class="note no"><p><b>нельзя</b> розовые кольца на розовом фоне — на розовом только жёлтые</p></div></div></div>
+  </section>
+
+  <!-- ─────────── LOGO ─────────── -->
+  <section id="logo">
+    <div class="blk"><h2>Лого</h2><div class="mc">
+    <p>Знак <code style="white-space:pre;font:inherit;color:var(--pink);background:none;padding:0">( б )</code> и скобки вокруг — те же кольца волны, набранные текстом. Пробелы есть и внутри, вокруг б, — так скобки читаются окружностью бубна. Шрифт Ubuntu Regular.</p>
+    </div><div class="mg"><div class="note no"><canvas data-l='{"level":3,"bad":"fade","w":200,"h":80}'></canvas><p><b>нельзя</b> прозрачность и затухание скобок</p></div></div></div>
+    <div class="blk"><h3 id="logo-rule">правило</h3><div class="mc">
+    <div class="rule">внутри <span>( б )</span> — по пробелу; дальше чем ближе к б, тем меньше пробелов — каждая следующая пара скобок на 1 пробел дальше</div>
+    <div class="row"><figure><canvas data-l='{"level":3,"w":560,"h":140,"spaces":true}'></canvas><figcaption>пробелы изнутри наружу: 1, 1, 2, 3</figcaption></figure></div>
+    </div><div class="mg"><div class="note no"><canvas data-l='{"level":3,"bad":"even","w":200,"h":80}'></canvas><p><b>нельзя</b> одинаковые промежутки</p></div></div></div>
+    <div class="blk"><h3 id="logo-levels">уровни</h3><div class="mc">
+    <p>От ядра <code style="white-space:pre;font:inherit;color:var(--pink);background:none;padding:0">( б )</code> до трёх пар скобок вокруг. Основной вариант — одна пара: <code style="white-space:pre;font:inherit;color:var(--pink);background:none;padding:0">( ( б ) )</code>. Больше скобок — когда нужно показать волну шире, меньше — когда мало места.</p>
+    <div class="row">
+      <figure class="main"><canvas data-l='{"level":1}'></canvas><figcaption><b class="tag">основной</b> ( ( б ) )</figcaption></figure>
+      <figure><canvas data-l='{"level":3}'></canvas><figcaption>(   (  ( ( б ) )  )   )</figcaption></figure>
+      <figure><canvas data-l='{"level":2}'></canvas><figcaption>(  ( ( б ) )  )</figcaption></figure>
+      <figure><canvas data-l='{"level":0}'></canvas><figcaption>( б )</figcaption></figure>
+    </div>
+    </div><div class="mg"></div></div>
+    <div class="blk"><h3 id="logo-words">слова</h3><div class="mc">
+    <p>Лого и название всегда пишутся со строчной — мы простые дружелюбные ребята. Вместо б в скобки можно поставить слово целиком, правило пробелов то же.</p>
+    <div class="row">
+      <figure><canvas data-l='{"level":1,"word":"барабанная","w":320}'></canvas><figcaption>( ( барабанная ) )</figcaption></figure>
+      <figure><canvas data-l='{"level":2,"word":"барабанная","w":320}'></canvas><figcaption>(  ( ( барабанная ) )  )</figcaption></figure>
+    </div>
+    <p style="margin-top:22px">Без скобок — словесные знаки. Строки ломаются только по словам, выключка влево.</p>
+    <div class="row">
+      <figure><canvas data-l='{"lines":["барабанная"]}'></canvas><figcaption>одно слово</figcaption></figure>
+      <figure><canvas data-l='{"lines":["барабанная","мастерская"]}'></canvas><figcaption>в две строки</figcaption></figure>
+      <figure><canvas data-l='{"lines":["барабанная мастерская"],"w":320}'></canvas><figcaption>в строку</figcaption></figure>
+      <figure><canvas data-l='{"lines":["барабанная","мастерская","петра","атапина"],"h":170}'></canvas><figcaption>полное имя, по слову в строке</figcaption></figure>
+      <figure><canvas data-l='{"lines":["барабанная мастерская","петра атапина"],"w":320,"h":120}'></canvas><figcaption>полное имя в две строки</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Строчные — часть характера: не вывеска, а разговор.</p></div><div class="note no"><canvas data-l='{"lines":["Барабанная","МАСТЕРСКАЯ"],"w":200,"h":90}'></canvas><p><b>нельзя</b> заглавные буквы и капслок</p></div></div></div>
+    <div class="blk"><h3 id="logo-type">характер</h3><div class="mc">
+    <p>Лого держится на ритме — скобки и растущие пробелы, — а не на шрифте. Поэтому шрифт можно менять под характер события (фестиваль, специальный ивент), и знак останется узнаваемым. Даже набранный руками в мессенджере.</p>
+    <div class="row">
+      <figure><canvas data-l='{"level":1,"f":"Ubuntu"}'></canvas><figcaption>Ubuntu, основной</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"f":"JetBrains Mono"}'></canvas><figcaption>моно для мастерской и техники</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"f":"PT Serif"}'></canvas><figcaption>антиква для камерного вечера</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"f":"Unbounded","wt":500}'></canvas><figcaption>гротеск для фестиваля</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"f":"Comfortaa","wt":500}'></canvas><figcaption>округлый для детских занятий</figcaption></figure>
+      <figure><div class="msg"><span>до встречи!</span><span>( ( б ) )</span></div><figcaption>набрано в мессенджере</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Основной шрифт — Ubuntu Regular. Другой шрифт — для особых поводов. Неизменно только правило пробелов.</p></div></div></div>
+    <div class="blk"><h3 id="logo-colors">цвет</h3><div class="mc">
+    <p><b>Один цвет — одиночные скобки через пробелы.</b> Основной вариант. <b>Два цвета — двойные скобки:</b> <code style="white-space:pre;font:inherit;background:none;padding:0"><span style="color:#f5c400">(</span><span style="color:var(--pink)">(</span> <span style="color:#f5c400">(</span><span style="color:var(--pink)">(</span> <span style="color:var(--pink)">б</span> <span style="color:var(--pink)">)</span><span style="color:#f5c400">)</span> <span style="color:var(--pink)">)</span><span style="color:#f5c400">)</span></code>, в каждой двойке дальняя от б скобка жёлтая.</p>
+    <div class="row">
+      <figure><canvas data-l='{"level":1,"bg":"#ffffff","c":"#ff00d0"}'></canvas><figcaption>розовый на белом</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"bg":"#ff00d0","c":"#ffffff"}'></canvas><figcaption>белый на розовом</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"bg":"#ffe100","c":"#ff00d0"}'></canvas><figcaption>розовый на жёлтом</figcaption></figure>
+      <figure><canvas data-l='{"level":1,"bg":"#ffffff","c":"#141414"}'></canvas><figcaption>тёмный на белом</figcaption></figure>
+    </div>
+    <div class="row" style="margin-top:20px">
+      <figure><canvas data-l='{"level":2,"bg":"#ffffff","c":"#ff00d0","a":"#ffe100"}'></canvas><figcaption>две пары</figcaption></figure>
+      <figure><canvas data-l='{"level":3,"bg":"#ffffff","c":"#ff00d0","a":"#ffe100"}'></canvas><figcaption>три пары</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><canvas data-l='{"level":2,"bad":"double1","w":200,"h":80}'></canvas><p><b>нельзя</b> двойные скобки в одном цвете</p></div></div></div>
+  </section>
+
+  <!-- ─────────── RINGS ─────────── -->
+  <section id="rings">
+    <div class="blk"><h2>Кольца</h2><div class="mc">
+    <p>Волна от удара. Кольца — это радиальный градиент с чередованием цвета и прозрачности, положенный дважды с маленьким сдвигом. Отсюда объём: волна кажется живой, а не нарисованной циркулем.</p>
+    <p>Подобрать кольца вживую: <a class="live" href="preview.html">открыть настройку колец</a>. Белый фон, розовый и фото рядом, все ползунки.</p>
+    </div><div class="mg"></div></div>
+    <div class="blk"><h3 id="rings-colors">цвет колец</h3><div class="mc">
+    <p>Два градиента с одинаковой структурой — по умолчанию 8 колец через каждые 12,5 % радиуса, непрозрачность пиков 1 → 0,78 → 0,59 → 0,42 → 0,28 → 0,17 → 0,09 → 0,03. Меняется только цвет — под фон.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":false}'></canvas><figcaption>на белом: розовый #FF00D0 в центре, к краю жёлтый</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":false}'></canvas><figcaption>на розовом: только жёлтый #FFE100</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><canvas data-r='{"bg":"pink","grad":"pink","text":false,"stick":false,"w":200}'></canvas><p><b>нельзя</b> розовый градиент на розовом фоне — волна пропадает</p></div></div></div>
+    <div class="blk"><h3 id="rings-build">сборка</h3><div class="mc">
+    <p>Одна копия градиента выглядит как мишень. Вторая такая же копия кладётся сверху со сдвигом меньше шага кольца — и кольца становятся волной.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","shift":0,"text":false,"stick":false}'></canvas><figcaption>одна копия: мишень</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":false}'></canvas><figcaption>две копии со сдвигом 6 %: волна</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":false,"soft":0}'></canvas><figcaption>мягкость 0, края жёсткие</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":false}'></canvas><figcaption>мягкость 1,35, стандарт</figcaption></figure>
+    </div>
+    <p style="margin-top:16px">Стандарт: размер 0,6, фаза 0,23, сдвиг 0,061, мягкость 1,35.</p>
+    </div><div class="mg"><div class="note no"><canvas data-r='{"bg":"white","shift":0.16,"soft":0,"text":false,"stick":false,"w":200}'></canvas><p><b>нельзя</b> большой сдвиг без мягкости — кольца двоятся</p></div><div class="note no"><p><b>нельзя</b> сплющивать кольца, добавлять перспективу, смаз по одной оси</p></div></div></div>
+    <div class="blk"><h3 id="rings-count">количество и размер</h3><div class="mc">
+    <p>Колец бывает от 3 до 20. Зазор между ними не меняется: больше колец — шире волна, а не плотнее. Размер меняет зазор и вместе с ним колотушку.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":false,"n":4}'></canvas><figcaption>4 кольца</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"n":8}'></canvas><figcaption>8, стандарт</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"n":14}'></canvas><figcaption>14 — тот же зазор, волна шире</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><p><b>нельзя</b> сжимать кольца ради количества — зазор держит ритм бренда</p></div></div></div>
+    <div class="blk"><h3 id="rings-plain">только искажение</h3><div class="mc">
+    <p>Кольца могут быть без цвета: остаётся одна волна, которая гнёт текст и фото. Тогда главный — текст, а удар видно по тому, как он его ломает. Силу искажения можно поднять в 4 раза.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":"#141414","plain":true,"cx":0.5,"cy":0.62}'></canvas><figcaption>текст на белом, только искажение</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":"#141414","plain":true,"warp":4.5,"cx":0.5,"cy":0.62,"stick":"pinkyellow"}'></canvas><figcaption>сильное искажение и колотушка</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","photo":true,"plain":true,"warp":5,"cx":0.55,"cy":0.45}'></canvas><figcaption>фото без цвета колец</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Цвет колец (в цвете или только искажение) общий для всех ударов поста.</p></div></div></div>
+    <div class="blk"><h3 id="rings-surfaces">на фото и тексте</h3><div class="mc">
+    <p>Кольца работают на любой поверхности. Поле колец — это UV-карта: фото и текст ремапятся вдоль радиуса (волна их корёжит), сверху ложится градиент.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":"#141414","stick":"white"}'></canvas><figcaption>белый фон, текст, белая колотушка</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":"#ffffff","stick":"whiteyellow"}'></canvas><figcaption>розовый фон, текст, колотушка из белого в жёлтый</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","photo":true,"stick":"pinkyellow"}'></canvas><figcaption>фото, колотушка из розового в жёлтый</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Искажение сильнее у центра удара и затухает к краю. Слово в центре может стать почти нечитаемым — это нормально для акцента, но не для информации: даты и адреса держи дальше от удара.</p></div><div class="note no"><p><b>нельзя</b> серые и чёрные тени — объём только жёлтым и розовым</p></div></div></div>
+  </section>
+
+  <!-- ─────────── STICK ─────────── -->
+  <section id="stick">
+    <div class="blk"><h2>Колотушка</h2><div class="mc">
+    <p>То, чем бьют по бубну. Колотушка показывает сам момент удара: голова там, откуда идут кольца, ручка уходит за край кадра.</p>
+    </div><div class="mg"><div class="note"><p>Колотушка необязательна: волна и лого работают и без неё.</p></div></div></div>
+    <div class="blk"><h3 id="stick-shape">форма</h3><div class="mc">
+    <p>Один цельный шейп: скруглённая квадратная голова и ручка — одна форма с одним градиентом. Голова — 12 % ширины кадра, ручка — 4 %.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":"whiteyellow"}'></canvas><figcaption>на розовом</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow"}'></canvas><figcaption>на белом</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><p><b>нельзя</b> голова и ручка разными формами или разными цветами</p></div></div></div>
+    <div class="blk"><h3 id="stick-grad">градиент</h3><div class="mc">
+    <p>Градиент начинается прямо от края головы и уходит в прозрачность к концу ручки.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","photo":true,"stick":"white"}'></canvas><figcaption>белый в прозрачный</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":"whiteyellow"}'></canvas><figcaption>белый в прозрачный жёлтый</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow"}'></canvas><figcaption>розовый в прозрачный жёлтый</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":"pink"}'></canvas><figcaption>розовый в прозрачный, только на розовом</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>На белом: розово-жёлтая, бело-жёлтая, белая. На розовом: розовая, розово-жёлтая, бело-жёлтая. На фото: белая, розово-жёлтая, бело-жёлтая.</p><p>Если ударов несколько, цвет колотушек у всех один.</p></div><div class="note no"><p><b>нельзя</b> сплошная заливка без прозрачности</p></div></div></div>
+    <div class="blk"><h3 id="stick-blur">блюр</h3><div class="mc">
+    <p>Прогрессивный: голова чёткая, ручка размывается всё сильнее к концу — как смаз от движения.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":"whiteyellow","sblur":0.045}'></canvas><figcaption>стандарт</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"stick":"whiteyellow","sblur":0.09}'></canvas><figcaption>сильнее, больше движения</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><canvas data-r='{"bg":"pink","text":false,"stick":"whiteyellow","sblur":0,"w":200}'></canvas><p><b>нельзя</b> без блюра — колотушка выглядит наклейкой</p></div><div class="note no"><p><b>нельзя</b> одинаковый блюр по всей длине, размытая голова</p></div></div></div>
+    <div class="blk"><h3 id="stick-pos">положение</h3><div class="mc">
+    <p>Голова всегда в центре удара — там, откуда расходятся кольца. Сам удар может быть где угодно в кадре, ударов может быть несколько (до шести), у каждого своя колотушка, ручка смотрит в любую сторону.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"pink","text":false,"cx":0.3,"cy":0.68,"sticks":[{"grad":"whiteyellow","angle":-35}]}'></canvas><figcaption>не в центре</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"centers":[[0.32,0.38],[0.66,0.62]],"sticks":[{"cx":0.32,"cy":0.38,"grad":"whiteyellow","angle":-125},{"cx":0.66,"cy":0.62,"grad":"whiteyellow","angle":30}]}'></canvas><figcaption>две колотушки</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","photo":true,"cx":0.55,"cy":0.55,"sticks":[{"grad":"pinkyellow","angle":150}]}'></canvas><figcaption>ручка в другую сторону</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Ручка всегда уходит за край кадра — конец колотушки не виден.</p></div><div class="note no"><p><b>нельзя</b> голова колотушки вне центра колец</p></div></div></div>
+  </section>
+
+  <!-- ─────────── MOTION ─────────── -->
+  <section id="motion">
+    <div class="blk"><h2>Движение</h2><div class="mc">
+    <p>Пост живёт как короткий клип: каждый удар случается один раз, в свой момент. Статичная картинка — это последний кадр, когда волна осталась.</p>
+    </div><div class="mg"><div class="note"><p>По умолчанию клип 5 секунд, играет один раз, волна остаётся.</p></div></div></div>
+    <div class="blk"><h3 id="motion-hit">удар</h3><div class="mc">
+    <p>Колотушка прилетает от зрителя — из большой и размытой в резкую — за 0,13 с, бьёт, держится 0,15 с и уезжает вдоль ручки, чуть увеличиваясь и размываясь. В момент удара поверхность коротко вздрагивает.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow","t":-0.08,"wave":"go","w":150}'></canvas><figcaption>прилетает</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow","t":0.05,"wave":"go","w":150}'></canvas><figcaption>удар</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow","t":0.45,"wave":"go","w":150}'></canvas><figcaption>уезжает</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow","t":3,"wave":"stay","w":150}'></canvas><figcaption>если волна остаётся — остаётся и колотушка</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note no"><p><b>нельзя</b> отскок колотушки — удар один, чистый</p></div></div></div>
+    <div class="blk"><h3 id="motion-wave">волна</h3><div class="mc">
+    <p>Первым уходит одно сильное оранжевое кольцо, чуть быстрее остальных. Через 0,13 с за ним из центра выходит остальная волна. Все кольца бледнеют с расстоянием одинаково.</p>
+    <div class="row">
+      <figure><canvas data-r='{"bg":"white","text":false,"t":0.3,"wave":"go","w":150}'></canvas><figcaption>первое кольцо</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"t":0.7,"wave":"go","w":150}'></canvas><figcaption>за ним волна</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"t":1.6,"wave":"go","w":150}'></canvas><figcaption>уходит: центр успокаивается</figcaption></figure>
+      <figure><canvas data-r='{"bg":"white","text":false,"t":1.6,"wave":"stay","w":150}'></canvas><figcaption>остаётся: складывается в картинку</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Два режима: волна остаётся картинкой (по умолчанию) или уходит за край, и пост снова чистый.</p></div><div class="note no"><p><b>нельзя</b> поток волн по кругу — волна от удара одна</p></div></div></div>
+    <div class="blk"><h3 id="motion-time">таймлайн</h3><div class="mc">
+    <p>Под постом — таймлайн: отметка на каждый удар, их двигают по времени. Длина клипа от 1 до 20 секунд. Видео сохраняется в MP4 целиком, картинка в PNG — в 2× размере.</p>
+    </div><div class="mg"><div class="note"><p>Несколько ударов подряд с паузой 0,5–1 с читаются как ритм — это барабан.</p></div></div></div>
+  </section>
+
+  <!-- ─────────── USAGE ─────────── -->
+  <section id="use">
+    <div class="blk"><h2>Примеры</h2><div class="mc">
+    <p>Как это собирается в реальных носителях.</p>
+    </div><div class="mg"></div></div>
+    <div class="blk"><h3 id="use-insta">инстаграм</h3><div class="mc">
+    <div class="phone"><div class="scr">
+      <div class="sb"><b>12:01</b><i></i><span>5G ▮</span></div>
+      <div class="ih"><span>‹</span><b>barabannaja</b><span>⋯</span></div>
+      <div class="ip"><canvas class="ava" data-r='{"bg":"pink","text":false,"w":96,"h":96,"cx":0.42,"cy":0.55,"stick":"whiteyellow"}'></canvas>
+        <div class="st"><div class="nm"></div><div class="nums"><div><b>765</b>posts</div><div><b>1 158</b>followers</div><div><b>991</b>following</div></div></div></div>
+      <div class="bio">барабанная мастерская петра атапина<br>бубны из дерева и кожи, мастер-классы<br><a>saratov, russia</a></div>
+      <div class="grid">
+        <canvas data-r='{"bg":"pink","text":"#ffffff","stick":"whiteyellow","w":120,"h":160}'></canvas>
+        <canvas data-r='{"bg":"white","photo":true,"stick":"pinkyellow","w":120,"h":160}'></canvas>
+        <canvas data-r='{"bg":"white","text":false,"stick":"pinkyellow","w":120,"h":160}'></canvas>
+        <canvas data-r='{"bg":"white","text":"#141414","w":120,"h":160}'></canvas>
+        <canvas data-r='{"bg":"pink","text":false,"centers":[[0.32,0.38],[0.66,0.62]],"sticks":[{"cx":0.32,"cy":0.38,"grad":"whiteyellow","angle":-125},{"cx":0.66,"cy":0.62,"grad":"whiteyellow","angle":30}],"w":120,"h":160}'></canvas>
+        <canvas data-r='{"bg":"white","photo":true,"w":120,"h":160}'></canvas>
+      </div>
+    </div></div>
+    </div><div class="mg"><div class="note"><p>Аватар — волна с колотушкой, без текста: в кружке читается и в 40 px.</p></div><div class="note"><p>Имя профиля — основное лого со словом: ( ( барабанная ) ).</p></div><div class="note"><p>В сетке чередуй фон: розовый, фото, белый — так лента дышит.</p></div></div></div>
+    <div class="blk"><h3 id="use-carousel">карусель</h3><div class="mc">
+    <p>Соседние посты склеиваются замочком: у них общий фон, фото и удары — кольца и колотушка переходят через стык. Текст и лого у каждого поста свои, сохраняются они отдельно.</p>
+    <div class="row tight">
+      <figure><canvas data-r='{"bg":"pink","text":"#ffffff","cx":0.95,"cy":0.42,"n":12,"sticks":[{"grad":"whiteyellow","angle":-50}]}'></canvas><figcaption>пост 1</figcaption></figure>
+      <figure><canvas data-r='{"bg":"pink","text":false,"cx":-0.05,"cy":0.42,"n":12,"sticks":[{"grad":"whiteyellow","angle":-50}]}'></canvas><figcaption>пост 2</figcaption></figure>
+    </div>
+    </div><div class="mg"><div class="note"><p>Удар на стыке листается как один кадр — так карусель держится вместе.</p></div><div class="note no"><p><b>нельзя</b> разные фоны у склеенных постов</p></div></div></div>
+  </section>
+</main>
+<script src="sample-photo.js"></script>
+<script>document.write('<script src="wave.js?'+Date.now()+'"><\/script>')</script><!-- always the fresh engine, never a cached one -->
+<script>
+'use strict';
+const BASE={cx:.45,cy:.5,size:.6,phase:.23,shift:.061,angle:15,blur:0,soft:1.35,persp:0,sy:1.08,disp:.88,rgb:.35,tint:.43};
+const PINK=[1,0,.816],WHITE=[1,1,1];
+const dpr=Math.min(devicePixelRatio||1,2);
+// one WebGL engine renders every ring example, results are copied into plain 2D canvases
+const glc=document.createElement('canvas');const E=Wave.make(glc);
+const stk=document.createElement('canvas');
+let photo=null;
+
+function textLayer(w,h,ink){const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+  const fs=w*.095;x.font=`400 ${fs}px Ubuntu`;x.fillStyle=ink;
+  ['барабанная','мастерская','петра','атапина'].forEach((l,i)=>x.fillText(l,w*.155,h*.5+fs*.8+i*fs*.98));return c}
+// the same hit animation as in the generator (8 rings): stick in → strike → off; orange first ring, then the rest of the wave
+function anim(o){const N=o.n||8,K=Math.max(2,Math.round(N*.4)),go=o.wave==='go',T=go?3.6:2.5,LAG=.13,tau=o.t,ease=v=>1-(1-v)**3;
+  const run=tt=>{const p=Math.min(1,tt/T);return tt<0?-1:go?(N+K)*(1-(1-p)**2):N*ease(p)};
+  const ldOn=tau>=0&&tau/T<1,ld=ldOn?(run(tau)*1.22+.5)/N:-9,t2=tau-LAG,p=t2/T,on=t2>=0&&(!go||p<1),ph=on?run(t2):0;
+  const IN=.13,SH=.15,OUT=.55;let sa=0,ss=1,sb=0,mv=0;
+  if(tau>=-IN&&tau<0){const q=(tau+IN)/IN;sa=Math.min(1,q*3);ss=1+1.3*(1-q)**2;sb=(1-q)**2}
+  else if(tau>=0&&(!go||tau<SH))sa=1;
+  else if(tau>=SH&&tau<SH+OUT){const u=(tau-SH)/OUT,e=u*u;sa=1-u;ss=1+.25*e;sb=.3*e;mv=.45*e}
+  return{sa,ss,sb,mv,fx:{phase:(BASE.phase+(!go&&p>=1?0:ph))%1,front:on&&(go||p<1)?(ph+.7)/N:on?9:-1,back:go?(ph-K+.3)/N:-9,lead:ld,leadBoost:ldOn?Math.max(0,1-ld)**1.6:0}}}
+function renderRing(cv){
+  const o=JSON.parse(cv.dataset.r),W=o.w||210,H=o.h||Math.round(W*1.25);
+  cv.style.width=W+'px';cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;
+  if(!E){const x=cv.getContext('2d');x.fillStyle='#eee';x.fillRect(0,0,cv.width,cv.height);x.fillStyle='#c00';x.font='14px sans-serif';x.fillText('нужен WebGL',10,20);return}
+  glc.width=cv.width;glc.height=cv.height;
+  const bgPink=o.bg==='pink',opt=Object.assign({},BASE,{bg:bgPink?PINK:WHITE,grad:o.grad||(bgPink?'yellow':'pink')});
+  if(o.shift!=null)opt.shift=o.shift;if(o.soft!=null)opt.soft=o.soft;if(o.cx!=null)opt.cx=o.cx;if(o.cy!=null)opt.cy=o.cy;
+  // n: how many rings (spacing stays the same, so the field grows); plain: no colour, only the distortion
+  if(o.n){opt.rings=o.n;opt.size=BASE.size*o.n/8}
+  if(o.plain){opt.tint=0;opt.rgb=0;opt.disp=BASE.disp*(o.warp||2.5)}
+  // t: a frame of the hit animation, seconds after the strike
+  const A=o.t!=null?anim(o):null;if(A)Object.assign(opt,A.fx);
+  let mode=0;
+  if(o.photo){if(!photo)return;E.setImage(photo);mode=1}
+  else if(o.text){E.setImage(textLayer(cv.width,cv.height,o.text));mode=2}
+  else E.setImage(null);
+  const x=cv.getContext('2d');
+  // one or more hit centres: extra fields are blended so overlapping rings stay readable
+  // extra hit centres: rings only (transparent), laid over like a second layer
+  if(o.plain&&mode===2){x.fillStyle=bgPink?'#ff00d0':'#ffffff';x.fillRect(0,0,cv.width,cv.height);E.draw(Object.assign({},opt,{mode:2,transparent:true}));x.drawImage(glc,0,0)}
+  else (o.centers||[[opt.cx,opt.cy]]).forEach(([ccx,ccy],i)=>{E.draw(Object.assign({},opt,{cx:ccx,cy:ccy,mode:i?0:mode,transparent:i>0}));x.drawImage(glc,0,0)});
+  const sticks=o.sticks||(o.stick?[{grad:o.stick}]:[]);
+  for(const st of sticks){if(A&&A.sa<=0)continue;stk.width=cv.width;stk.height=cv.height;const ang=st.angle??-58,ss=A?A.ss:1,ox=A?Math.cos(ang*Math.PI/180)*A.mv:0,oy=A?Math.sin(ang*Math.PI/180)*A.mv*cv.width/cv.height:0;
+    Wave.stick(stk.getContext('2d'),cv.width,cv.height,{on:true,cx:(st.cx??opt.cx)+.03*ss+ox,cy:(st.cy??opt.cy)-.02*ss+oy,angle:ang,grad:st.grad||'white',blur:o.sblur??.045,scale:ss});
+    if(A){x.globalAlpha=A.sa;if(A.sb>.01)x.filter=`blur(${(A.sb*.05*cv.width).toFixed(1)}px)`}x.drawImage(stk,0,0);x.filter='none';x.globalAlpha=1}
+}
+function renderLogo(cv){
+  const o=JSON.parse(cv.dataset.l),W=o.w||210,H=o.h||100;
+  cv.style.width=W+'px';cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;
+  const x=cv.getContext('2d');x.scale(dpr,dpr);x.fillStyle=o.bg||'#fff';x.fillRect(0,0,W,H);
+  const c=o.c||'#ff00d0',cx=W/2,cy=H/2;
+  if(o.lines){const fs=Math.min(30,(H-24)/o.lines.length/1.05);x.font=`400 ${fs}px Ubuntu`;let w=0;for(const l of o.lines)w=Math.max(w,x.measureText(l).width);
+    let f=fs;if(w>W*.84){f=fs*W*.84/w;x.font=`400 ${f}px Ubuntu`;w=W*.84}
+    x.fillStyle=c;x.textBaseline='alphabetic';const lh=f*1.02,top=cy-(o.lines.length*lh)/2+f*.78;o.lines.forEach((l,i)=>x.fillText(l,(W-w)/2,top+i*lh));return}const fam=o.f?'"'+o.f+'"':'Ubuntu',wt=o.f?((o.st?o.st+' ':'')+(o.wt||400)):400;let size=W>400?46:30;
+  // shrink so the widest version still fits the card
+  const lw=sz=>Wave.logoWidth(x,sz,o.level??3,!!(o.a||o.bad==='double1'),fam,wt,o.word||'б');
+  while(size>12&&lw(size)>W*.86)size-=1;
+  if(!o.bad){Wave.logo(x,cx,cy,size,c,o.a||null,o.level,fam,wt,o.word||'б');
+    if(o.spaces){x.font=`400 ${size}px Ubuntu`;const sp=x.measureText(' ').width,bw=x.measureText('(').width,wb=x.measureText('б').width;
+      x.fillStyle='rgba(255,0,208,.2)';const mark=(a,b)=>{x.fillRect(cx+a,cy+size*.62,b-a,4);x.fillRect(cx-b,cy+size*.62,b-a,4)};
+      mark(wb/2,wb/2+sp);let p=wb/2+sp+bw/2;for(let k=1;k<=3;k++){const from=p+bw/2;p+=bw+k*sp;mark(from,p-bw/2)}}
+    return}
+  x.textAlign='center';x.textBaseline='middle';x.fillStyle='#ff00d0';
+  if(o.bad==='double1'){x.font=`400 ${size}px Ubuntu`;x.fillText('((  (( (( б )) ))  ))',cx,cy)}
+  if(o.bad==='fade'){x.font=`400 ${size}px Ubuntu`;const wb=x.measureText('б').width,bw=x.measureText('(').width,sp=x.measureText(' ').width;let p=wb/2+sp+bw/2;
+    x.fillText('б',cx,cy);x.fillText('(',cx-p,cy);x.fillText(')',cx+p,cy);[1,2,3].forEach((k,i)=>{p+=bw+k*sp;x.globalAlpha=[.7,.45,.2][i];x.fillText('(',cx-p,cy);x.fillText(')',cx+p,cy)});x.globalAlpha=1}
+  if(o.bad==='even'){x.font=`400 ${size}px Ubuntu`;x.fillText('(  (  (  ( б )  )  )  )',cx,cy)}
+  if(o.bad==='mono'){x.font=`500 ${size*.62}px ui-monospace,monospace`;x.fillText('( ( ( ( б ) ) ) )',cx,cy)}
+}
+const PAIRS=[
+  {bg:'#ffffff',ring:'розовые',text:'#141414',logo:'#ff00d0',name:'белый фон'},
+  {bg:'#ff00d0',ring:'жёлтые',text:'#ffffff',logo:'#ffffff',name:'розовый фон'},
+  {bg:'#ffe100',ring:'—',text:'#141414',logo:'#ff00d0',name:'жёлтый фон'},
+  {bg:'photo',ring:'розовые поверх',text:'#ffffff',logo:'#ffffff',name:'фото'},
+];
+function renderPairs(){const box=document.getElementById('pairs');box.innerHTML='';
+  for(const p of PAIRS){const f=document.createElement('figure');f.className='pair';const c=document.createElement('canvas');const W=210,H=140;
+    c.style.width=W+'px';c.style.height=H+'px';c.width=W*dpr;c.height=H*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);
+    if(p.bg==='photo'&&photo){const s=Math.max(W/photo.width,H/photo.height);x.drawImage(photo,(W-photo.width*s)/2,H-photo.height*s,photo.width*s,photo.height*s)}else{x.fillStyle=p.bg==='photo'?'#ccc':p.bg;x.fillRect(0,0,W,H)}
+    Wave.logo(x,W/2,52,26,p.logo,null,1);x.font='400 22px Ubuntu';x.fillStyle=p.text;x.textAlign='center';x.fillText('барабанная',W/2,110);
+    const cap=document.createElement('figcaption');cap.innerHTML=`<b>${p.name}</b>, кольца ${p.ring}<br>текст ${p.text.toUpperCase()}, лого ${p.logo.toUpperCase()}`;
+    f.append(c,cap);box.appendChild(f)}}
+function renderName(){document.querySelectorAll('.nm').forEach(el=>{el.innerHTML='';const c=document.createElement('canvas');c.width=200*dpr;c.height=22*dpr;c.style.width='200px';c.style.height='22px';c.style.boxShadow='none';
+  const x=c.getContext('2d');x.scale(dpr,dpr);x.fillStyle='#fff';x.fillRect(0,0,200,22);Wave.logo(x,72,11,16,'#111',null,1,'Ubuntu',400,'барабанная');el.appendChild(c)})}
+function renderHero(){const c=document.getElementById('hero');if(!c)return;const w=c.parentElement.clientWidth,h=Math.max(380,Math.min(520,w*.42));
+  c.dataset.r=JSON.stringify({bg:'pink',text:false,stick:'whiteyellow',w,h,cx:.74,cy:.46});renderRing(c);c.style.width='100%';c.style.height='auto'}
+function renderAll(){renderHero();renderPairs();renderName();document.querySelectorAll('canvas[data-r]').forEach(renderRing);document.querySelectorAll('canvas[data-l]').forEach(renderLogo);
+  const b=document.getElementById('brand');b.innerHTML='';const c=document.createElement('canvas');c.width=90*dpr;c.height=28*dpr;c.style.width='90px';c.style.height='28px';c.style.boxShadow='none';   // same as the generator's top bar
+  const x=c.getContext('2d');x.scale(dpr,dpr);Wave.logo(x,42,14,20,'#ff00d0',null,1);b.appendChild(c)}
+const im=new Image();im.onload=()=>{photo=im;renderPairs();document.querySelectorAll('canvas[data-r]').forEach(cv=>{if(JSON.parse(cv.dataset.r).photo)renderRing(cv)})};im.src=window.SAMPLE_PHOTO;
+Promise.all(['400 40px Ubuntu','400 40px "JetBrains Mono"','500 40px Unbounded','500 40px Comfortaa','400 40px "PT Serif"'].map(f=>document.fonts.load(f,'(б)'))).then(()=>document.fonts.ready).then(renderAll).catch(renderAll);
+// highlight the active section in the menu
+const links=[...document.querySelectorAll('.menu a[data-s]')];
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest'})})}),{rootMargin:'-20% 0px -70% 0px'});
+document.querySelectorAll('section,h3[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>(б) кольца — статика</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--acc:#ff00c4;--ink:#141414;--mut:#8b8a86;--line:#e8e6e0;--bg:#efeee9}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{display:flex;font:13px/1.35 system-ui,sans-serif;color:var(--ink);background:var(--bg);overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+aside{width:240px;flex:none;height:100%;background:#fff;border-right:1px solid var(--line);padding:16px 18px;overflow:auto}
+.logo{margin-right:.5em}
+h1{font:500 15px Ubuntu,system-ui,sans-serif;color:var(--acc);white-space:nowrap;margin:0 0 4px}
+.sec{padding:9px 0 1px}
+.lab{font-size:11px;color:var(--mut);margin-bottom:5px}
+input[type=range]{width:100%;accent-color:var(--acc);margin:0}
+.chk{display:flex;gap:8px;align-items:center;cursor:pointer;padding:10px 0 2px}
+.chk input{accent-color:var(--acc);margin:0}
+.bgs{display:flex;gap:4px}.bgs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 11px}.bgs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn{width:100%;margin-top:10px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px}
+.note{font-size:11px;color:var(--mut);margin-top:12px;line-height:1.5}
+main{flex:1;display:flex;align-items:center;justify-content:center;gap:22px;padding:30px;min-width:0}
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figcaption{font-size:12px;color:var(--mut)}
+.pn{position:relative;box-shadow:0 14px 50px rgba(0,0,0,.12);cursor:crosshair}
+.pn canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
+</style>
+</head>
+<body>
+<aside>
+  <h1><span class="logo">(&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;(&nbsp;б&nbsp;)&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;)</span> кольца</h1>
+  <div class="sec"><div class="lab">размер колец</div><input type="range" id="size" min=".4" max="1.8" step=".01"></div>
+  <div class="sec"><div class="lab">фаза (куда ушли кольца)</div><input type="range" id="phase" min="0" max="1" step=".01"></div>
+  <div class="sec"><div class="lab">сдвиг второго слоя</div><input type="range" id="shift" min="0" max=".08" step=".001"></div>
+  <div class="sec"><div class="lab">мягкость колец</div><input type="range" id="soft" min="0" max="3" step=".01"></div>
+  <div class="sec"><div class="lab">искажение фото и текста</div><input type="range" id="disp" min="0" max="2" step=".01"></div>
+  <div class="sec"><div class="lab">градиент поверх фото</div><input type="range" id="tint" min="0" max="1" step=".01"></div>
+  <label class="chk"><input type="checkbox" id="stk">колотушка</label>
+  <div class="sec"><div class="lab">блюр колотушки</div><input type="range" id="sblur" min="0" max=".1" step=".001"></div>
+  <button class="btn" id="ph">заменить фото</button>
+  <button class="btn" id="rst">сбросить</button>
+  <div class="note">статичный кадр<br>клик по картинке — точка удара</div>
+</aside>
+<main>
+  <figure><div class="pn"><canvas class="gl"></canvas><canvas class="st"></canvas></div><figcaption>белый + текст</figcaption></figure>
+  <figure><div class="pn"><canvas class="gl"></canvas><canvas class="st"></canvas></div><figcaption>розовый + текст</figcaption></figure>
+  <figure><div class="pn"><canvas class="gl"></canvas><canvas class="st"></canvas></div><figcaption>фото</figcaption></figure>
+</main>
+<input type="file" id="file" accept="image/*" hidden>
+<script src="sample-photo.js"></script>
+<script>document.write('<script src="wave.js?'+Date.now()+'"><\/script>')</script><!-- always the fresh engine, never a cached one -->
+<script>
+'use strict';
+const DEF={cx:.45,cy:.52,size:.6,phase:.23,shift:.061,angle:15,blur:0,soft:1.35,persp:0,sy:1.08,disp:.88,tint:.43,stick:true,sblur:.045};
+const S=Object.assign({},DEF);
+try{Object.assign(S,JSON.parse(localStorage.getItem('bb.static.v7')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('bb.static.v7',JSON.stringify(S))}catch(e){}};
+// fixed panels: white bg + pink rings + dark text / pink bg + yellow rings + white text / photo + pink rings on top
+const PANELS=[{bg:[1,1,1],grad:'pink',mode:2,ink:'#141414',sg:'white'},{bg:[1,0,.816],grad:'yellow',mode:2,ink:'#ffffff',sg:'orange'},{bg:[1,1,1],grad:'pink',mode:1,sg:'pinkorange'}];
+const pn=[...document.querySelectorAll('.pn')];
+const gls=pn.map(p=>p.querySelector('.gl')),sts=pn.map(p=>p.querySelector('.st'));
+const E=gls.map(c=>Wave.make(c));
+
+function textCanvas(w,h,ink){
+  const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+  const fs=w*.095;x.font=`400 ${fs}px Ubuntu`;x.fillStyle=ink;x.textBaseline='alphabetic';
+  ['барабанная','мастерская','петра','атапина'].forEach((l,i)=>x.fillText(l,w*.155,h*.47+fs*.8+i*fs*.98));
+  return c;
+}
+function layout(){
+  const main=document.querySelector('main');
+  let w=(main.clientWidth-60-44)/3,h=w*4/3;if(h>main.clientHeight-90){h=main.clientHeight-90;w=h*3/4}
+  const dpr=Math.min(devicePixelRatio||1,2);
+  pn.forEach(p=>{p.style.width=Math.floor(w)+'px';p.style.height=Math.floor(h)+'px'});
+  [...gls,...sts].forEach(c=>{c.width=Math.round(w*dpr);c.height=Math.round(h*dpr)});
+  PANELS.forEach((p,i)=>{if(p.mode===2&&E[i])E[i].setImage(textCanvas(gls[i].width,gls[i].height,p.ink))});
+  draw();
+}
+function draw(){
+  const base={cx:S.cx,cy:S.cy,size:S.size,phase:S.phase,shift:S.shift,angle:S.angle,blur:0,soft:S.soft,persp:0,sy:S.sy,disp:S.disp,rgb:.35,tint:S.tint};
+  E.forEach((e,i)=>e&&e.draw(Object.assign({},base,PANELS[i])));
+  sts.forEach((c,i)=>Wave.stick(c.getContext('2d'),c.width,c.height,{on:S.stick,cx:S.cx+.03,cy:S.cy-.02,angle:-58,grad:PANELS[i].sg,blur:S.sblur}));
+}
+function setPhoto(src){const im=new Image();im.onload=()=>{E[2]&&E[2].setImage(im);draw()};im.src=src}
+function bindAll(){for(const k of['size','phase','shift','soft','disp','tint','sblur']){const el=document.getElementById(k);el.value=S[k];el.oninput=()=>{S[k]=+el.value;save();draw()}}
+  const st=document.getElementById('stk');st.checked=S.stick;st.onchange=()=>{S.stick=st.checked;save();draw()}}
+bindAll();
+pn.forEach(p=>p.onpointerdown=e=>{const r=p.getBoundingClientRect();S.cx=(e.clientX-r.left)/r.width;S.cy=(e.clientY-r.top)/r.height;save();draw()});
+document.getElementById('ph').onclick=()=>document.getElementById('file').click();
+document.getElementById('file').onchange=e=>{const f=e.target.files[0];if(f)setPhoto(URL.createObjectURL(f));e.target.value=''};
+document.getElementById('rst').onclick=()=>{Object.assign(S,DEF);save();bindAll();draw()};
+addEventListener('resize',layout);
+layout();setPhoto(window.SAMPLE_PHOTO);
+document.fonts.load('400 40px Ubuntu').then(layout).catch(()=>{});
+</script>
+</body>
+</html>
