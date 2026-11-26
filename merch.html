@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>барабанная: мерч</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=JetBrains+Mono:wght@400&family=Unbounded:wght@500&family=Comfortaa:wght@500&family=PT+Serif:wght@400&display=swap" rel="stylesheet">
+<script>document.write('<link rel="stylesheet" href="studio.css?'+Date.now()+'">')</script>
+</head>
+<body data-page="merch">
+<aside>
+  <div class="brand"><canvas id="brand" width="120" height="24" style="width:120px;height:24px"></canvas><a href="guide.html">гайд</a></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="panel"></div>
+  <div class="foot"><button class="alt" id="rnd">другой вариант</button><button class="big" id="png">скачать PNG</button><button class="alt" id="pngall" style="display:none">скачать все фото</button></div>
+</aside>
+<main><div class="stage" id="stage"><canvas id="cv"></canvas><div class="amask"></div><button class="adir" id="adir" title="куда смотрит ручка — тяни по кругу" aria-label="куда смотрит ручка"></button></div><div class="side" id="side"></div></main>
+<header class="topbar"><a class="tblogo" href="guide.html" title="бренд гайд"><canvas id="tbLogo"></canvas></a><a class="tbl" href="guide.html">бренд гайд</a>
+  <nav class="tbnav"><a href="assets.html#posts">пост</a><a href="assets.html#profile">профиль</a><a href="#merch" data-k="merch">мерч</a></nav>
+</header>
+<div class="page" id="page">
+  <section class="sec" id="merch"><div class="sechd" id="hdmerch"></div><div class="row" id="rowMerch"></div></section>
+</div>
+<div class="hint" id="hint"></div>
+<div id="drop">брось фото</div>
+<input type="file" id="file" accept="image/*" multiple hidden>
+<script src="merch/mockups.js"></script>
+<script>document.write('<script src="wave.js?'+Date.now()+'"><\/script><script src="studio.js?'+Date.now()+'"><\/script>')</script><!-- always the fresh engine and studio, never cached -->
+</body>
+</html>

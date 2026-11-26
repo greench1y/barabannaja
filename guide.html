@@ -48,6 +48,7 @@ figure{margin:0;display:flex;flex-direction:column;gap:8px}
 figcaption{font-size:13px;color:var(--mut);max-width:210px;white-space:pre-wrap}
 canvas{display:block;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
 figure canvas{outline:1px solid var(--line);outline-offset:0}
+.mimg{display:block;width:300px;height:auto}figure:has(>.mimg){width:300px}
 .blk{display:grid;grid-template-columns:minmax(0,1fr) 220px;column-gap:48px;align-items:start}
 .blk>h2,.blk>h3{grid-column:1/-1}
 .live{color:var(--ink);font-weight:500;text-decoration:none;border-bottom:2px solid var(--yellow)}
@@ -105,7 +106,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
 </head>
 <body>
 <header class="topbar"><a class="tblogo" href="guide.html" title="бренд гайд"><span id="brand"></span></a><a class="tbl on" href="guide.html">бренд гайд</a>
-  <nav class="tbnav"><a href="assets.html#posts">пост</a><a href="assets.html#profile">профиль</a></nav><a class="tbeye" href="assets.html#preview">превью</a></header>
+  <nav class="tbnav"><a href="assets.html#posts">пост</a><a href="assets.html#profile">профиль</a><a href="merch.html">мерч</a></nav><a class="tbeye" href="assets.html#preview">превью</a></header>
 <aside>
 
   <nav class="menu">
@@ -137,6 +138,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
     <a href="#use" data-s="use">примеры</a>
     <a class="sub" href="#use-insta" data-s="use">инстаграм</a>
     <a class="sub" href="#use-carousel" data-s="use">карусель</a>
+    <a class="sub" href="#use-merch" data-s="use">мерч</a>
   </nav>
 </aside>
 <main>
@@ -364,6 +366,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
       <figure><canvas data-r='{"bg":"pink","text":false,"cx":-0.05,"cy":0.42,"n":12,"sticks":[{"grad":"whiteyellow","angle":-50}]}'></canvas><figcaption>пост 2</figcaption></figure>
     </div>
     </div><div class="mg"><div class="note"><p>Удар на стыке листается как один кадр — так карусель держится вместе.</p></div><div class="note no"><p><b>нельзя</b> разные фоны у склеенных постов</p></div></div></div>
+    <div class="blk"><h3 id="use-merch">мерч</h3><div class="mc">
+    <p>Белые худи и шопперы: те же кольца, колотушка и лого, что в постах. Сделать свой — на <a class="live" href="merch.html">странице мерча</a>.</p>
+    <div class="row">
+      <figure><img class="mimg" src="stills/merch/hoodie-front.jpg" alt="белое худи спереди, двухцветное лого на груди, на чёрном фоне"><figcaption>худи спереди</figcaption></figure>
+      <figure><img class="mimg" src="stills/merch/hoodie-back-rings.jpg" alt="белое худи сзади, жёлтые кольца с колотушкой и мелкое розовое название, на розовом фоне"><figcaption>худи сзади</figcaption></figure>
+      <figure><img class="mimg" src="stills/merch/hoodie-back-name.jpg" alt="белое худи сзади, крупное название, искажённое двумя ударами, на жёлтом фоне"><figcaption>худи сзади</figcaption></figure>
+      <figure><img class="mimg" src="stills/merch/tote.jpg" alt="белый шоппер, розовые кольца и название, на чёрном фоне"><figcaption>шоппер</figcaption></figure>
+    </div>
+    </div><div class="mg"></div></div>
   </section>
 </main>
 <script src="sample-photo.js"></script>
