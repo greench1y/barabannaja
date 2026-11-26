@@ -217,4 +217,5 @@ aside,main{display:none!important}
 #drop{position:fixed;inset:72px 12px 12px 12px;border:2px dashed var(--pink);border-radius:18px;display:none;place-items:center;color:var(--pink);font-weight:500;background:rgba(255,0,208,.04);pointer-events:none;z-index:9}
 #drop.on{display:grid}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-.tbbtn{border:0;background:none;font:inherit;cursor:pointer;margin-left:-20px}
+.tbbtn{border:0;background:none;font:inherit;cursor:pointer}
+.tbproj{display:flex;gap:4px;margin-left:auto}.tbproj+.tbnav{margin-left:24px}

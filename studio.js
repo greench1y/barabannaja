@@ -62,7 +62,8 @@ async function importProject(file){let o;try{o=JSON.parse(await file.text())}cat
   localStorage.setItem('bb.assets.v6',JSON.stringify(o.state));location.reload()}
 {const bar=document.querySelector('.topbar .tbl'),pf=document.createElement('input');pf.type='file';pf.accept='.json,application/json';pf.hidden=true;pf.onchange=()=>{if(pf.files[0])importProject(pf.files[0]);pf.value=''};
   const mk=(t,ti,f)=>{const b=document.createElement('button');b.className='tbl tbbtn';b.textContent=t;b.title=ti;b.onclick=f;return b};
-  if(bar)bar.after(mk('сохранить проект','скачать файл со всеми постами, профилем, мерчем и фото',exportProject),mk('открыть проект','загрузить сохранённый файл проекта',()=>pf.click()),pf)}
+  // right side, before the sections: project file | пост профиль мерч
+  const nav=document.querySelector('.topbar .tbnav'),g=document.createElement('span');g.className='tbproj';g.append(mk('сохранить проект','скачать файл со всеми постами, профилем, мерчем и фото',exportProject),mk('открыть проект','загрузить сохранённый файл проекта',()=>pf.click()),pf);if(nav)nav.before(g);else if(bar)bar.after(g)}
 const save=()=>{try{keepLists();let v=null;try{v=JSON.parse(localStorage.getItem('bb.assets.v6')||'null')}catch(e){}
   const out=PAGE==='merch'?Object.assign(v&&v.avatar?v:JSON.parse(JSON.stringify(S)),{merchs:S.merchs}):Object.assign({},S,{merchs:v?v.merchs:S.merchs});
   localStorage.setItem('bb.assets.v6',JSON.stringify(out))}catch(e){}};
