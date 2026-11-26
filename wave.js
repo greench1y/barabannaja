@@ -133,7 +133,7 @@ function stick(ctx,W,H,o){
   // longer only if the frame edge is even further away
   let L=1e9;const fx=hx-PAD,fy=hy-PAD;if(ux>1e-6)L=Math.min(L,(W-fx)/ux);if(ux<-1e-6)L=Math.min(L,-fx/ux);if(uy>1e-6)L=Math.min(L,(H-fy)/uy);if(uy<-1e-6)L=Math.min(L,-fy/uy);
   L=Math.max(L+U*.12,U*1.5);
-  if(o.len)L=U*o.len*sc;   // a fixed handle (merch): the whole stick stays inside the print
+  L=U*(o.len||.75)*sc;   // one fixed handle length everywhere (posts, profile, merch, guide)
   for(const c of tmp){if(c.width!==CW||c.height!==CH){c.width=CW;c.height=CH}}
   const[shape,band,out]=tmp.map(c=>c.getContext('2d'));
   const[c0,c1]=STICK_GRADS[o.grad]||STICK_GRADS.white;

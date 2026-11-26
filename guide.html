@@ -139,6 +139,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
     <a class="sub" href="#use-insta" data-s="use">инстаграм</a>
     <a class="sub" href="#use-carousel" data-s="use">карусель</a>
     <a class="sub" href="#use-merch" data-s="use">мерч</a>
+    <a class="sub" href="#use-project" data-s="use">сохранить работу</a>
   </nav>
 </aside>
 <main>
@@ -274,7 +275,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
   <!-- ─────────── STICK ─────────── -->
   <section id="stick">
     <div class="blk"><h2>Колотушка</h2><div class="mc">
-    <p>То, чем бьют по бубну. Колотушка показывает сам момент удара: голова там, откуда идут кольца, ручка уходит за край кадра.</p>
+    <p>То, чем бьют по бубну. Колотушка показывает сам момент удара: голова там, откуда идут кольца, ручка растворяется к концу.</p>
     </div><div class="mg"><div class="note"><p>Колотушка необязательна: волна и лого работают и без неё.</p></div></div></div>
     <div class="blk"><h3 id="stick-shape">форма</h3><div class="mc">
     <p>Один цельный шейп: скруглённая квадратная голова и ручка — одна форма с одним градиентом. Голова — 12 % ширины кадра, ручка — 4 %.</p>
@@ -306,7 +307,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
       <figure><canvas data-r='{"bg":"pink","text":false,"centers":[[0.32,0.38],[0.66,0.62]],"sticks":[{"cx":0.32,"cy":0.38,"grad":"whiteyellow","angle":-125},{"cx":0.66,"cy":0.62,"grad":"whiteyellow","angle":30}]}'></canvas><figcaption>две колотушки</figcaption></figure>
       <figure><canvas data-r='{"bg":"white","photo":true,"cx":0.55,"cy":0.55,"sticks":[{"grad":"pinkyellow","angle":150}]}'></canvas><figcaption>ручка в другую сторону</figcaption></figure>
     </div>
-    </div><div class="mg"><div class="note"><p>Ручка всегда уходит за край кадра — конец колотушки не виден.</p></div><div class="note no"><p><b>нельзя</b> голова колотушки вне центра колец</p></div></div></div>
+    </div><div class="mg"><div class="note"><p>Ручка везде одной длины — в постах, профиле и на мерче — и растворяется к концу.</p></div><div class="note no"><p><b>нельзя</b> голова колотушки вне центра колец</p></div></div></div>
   </section>
 
   <!-- ─────────── MOTION ─────────── -->
@@ -375,6 +376,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
       <figure><img class="mimg" src="stills/merch/tote.jpg" alt="белый шоппер, розовые кольца и название, на чёрном фоне"><figcaption>шоппер</figcaption></figure>
     </div>
     </div><div class="mg"></div></div>
+    <div class="blk"><h3 id="use-project">сохранить работу</h3><div class="mc">
+    <p>Генератор сам помнит всё сделанное, но только в этом браузере. Чтобы продолжить на другом компьютере, в другом браузере или отдать работу кому-то, сохрани проект файлом.</p>
+    <p><b>сохранить проект</b> — кнопка в верхнем меню. Скачивает один файл <code>.json</code>: все посты, аватар, обложки, мерч и загруженные фото.</p>
+    <p><b>открыть проект</b> — рядом. Выбери сохранённый файл, подтверди, и генератор покажет всё как было. То, что было в генераторе до этого, заменится.</p>
+    </div><div class="mg"><div class="note"><p>Сохраняй файл перед очисткой браузера и перед большими правками.</p></div><div class="note no"><p><b>нельзя</b> править одну и ту же страницу генератора в двух вкладках: останется то, что сохранилось последним</p></div></div></div>
   </section>
 </main>
 <script src="sample-photo.js"></script>

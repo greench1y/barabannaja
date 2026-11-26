@@ -44,6 +44,21 @@ function restoreProfile(){const L=restoreList(S.profile);if(!L.some(isAv))L.unsh
 // on load: forget photos that no card uses any more
 async function prunePhotos(){try{const used=new Set([...(S.posts||[]),...(S.profile||[])].map(o=>o.pid)),db=await photoDB(),st=db.transaction('p','readwrite').objectStore('p'),r=st.getAllKeys();r.onsuccess=()=>r.result.forEach(k=>{if(!used.has(k))st.delete(k)})}catch(e){}}
 // each page writes only its own lists: the other page may be open in another tab
+// the whole project as one file: posts, profile, merch and their photos; open it in any browser to continue
+const blobURL=b=>new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result);r.readAsDataURL(b)});
+async function exportProject(){save();const state=JSON.parse(localStorage.getItem('bb.assets.v6')||'{}'),photos={};
+  try{const db=await photoDB(),st=db.transaction('p').objectStore('p'),keys=await new Promise(ok=>{const r=st.getAllKeys();r.onsuccess=()=>ok(r.result);r.onerror=()=>ok([])});
+    for(const k of keys){const f=await new Promise(ok=>{const r=db.transaction('p').objectStore('p').get(k);r.onsuccess=()=>ok(r.result);r.onerror=()=>ok(null)});if(f)photos[k]=await blobURL(f)}}catch(e){console.warn(e)}
+  const d=new Date(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'barabannaja',v:1,state,photos})],{type:'application/json'}));
+  a.download=`barabannaja-проект-${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);toast('проект сохранён в файл')}
+async function importProject(file){let o;try{o=JSON.parse(await file.text())}catch(e){toast('это не файл проекта');return}
+  if(!o||o.app!=='barabannaja'||!o.state){toast('это не файл проекта барабанной');return}
+  if(!confirm('Заменить всё, что сейчас в генераторе, содержимым файла?'))return;
+  ready=false;try{const db=await photoDB();for(const[k,u]of Object.entries(o.photos||{})){const b=await (await fetch(u)).blob();await new Promise(ok=>{const t=db.transaction('p','readwrite');t.objectStore('p').put(b,k);t.oncomplete=ok;t.onerror=ok})}}catch(e){console.warn(e)}
+  localStorage.setItem('bb.assets.v6',JSON.stringify(o.state));location.reload()}
+{const bar=document.querySelector('.topbar .tbl'),pf=document.createElement('input');pf.type='file';pf.accept='.json,application/json';pf.hidden=true;pf.onchange=()=>{if(pf.files[0])importProject(pf.files[0]);pf.value=''};
+  const mk=(t,ti,f)=>{const b=document.createElement('button');b.className='tbl tbbtn';b.textContent=t;b.title=ti;b.onclick=f;return b};
+  if(bar)bar.after(mk('сохранить проект','скачать файл со всеми постами, профилем, мерчем и фото',exportProject),mk('открыть проект','загрузить сохранённый файл проекта',()=>pf.click()),pf)}
 const save=()=>{try{keepLists();let v=null;try{v=JSON.parse(localStorage.getItem('bb.assets.v6')||'null')}catch(e){}
   const out=PAGE==='merch'?Object.assign(v&&v.avatar?v:JSON.parse(JSON.stringify(S)),{merchs:S.merchs}):Object.assign({},S,{merchs:v?v.merchs:S.merchs});
   localStorage.setItem('bb.assets.v6',JSON.stringify(out))}catch(e){}};
@@ -195,14 +210,16 @@ const isAv=p=>!!(p&&p.av),isHlP=p=>!!p&&p.title!=null;
 function makeAvatarPost(){const p=newPost();
   // on the avatar the logo always sits in the centre
   Object.assign(p.set,{textOn:false,rings:true,logo:false,lpos:'c',lsize:.6,surf:'pink',pz:0,wave:'stay',
-    hits:[{cx:.46,cy:.52,step:.45,stick:true,dir:-50}]});if(S.avatarSet)Object.assign(p.set,JSON.parse(JSON.stringify(S.avatarSet)));if(p.set.surf==='photo')p.set.surf='pink';p.set.lpos='c';p.av=true;return p}
+    hits:[{cx:.5,cy:.5,step:.5,count:.35,warp:.2,stick:true,dir:-50,sgrad:'whiteyellow'}]});if(S.avatarSet)Object.assign(p.set,JSON.parse(JSON.stringify(S.avatarSet)));if(p.set.surf==='photo')p.set.surf='pink';p.set.lpos='c';p.av=true;return p}
 // highlight covers: a short word in the middle, small rings, background alternating
 const HL_TITLES=['отзывы','эко-бубны','практики','мастер-классы','барабаны'];
 function makeHl(title,k=0){const p=newPost();
   Object.assign(p.set,{textOn:true,text:title,tpos:'mid',tsize:.45,rings:true,logo:false,surf:k%2?'white':'pink',pz:0,wave:'stay',
     hits:[{cx:.5,cy:.5,step:.3,count:5/17,warp:0,stick:false,dir:-50}]});
   if(S.hlSet){const d=JSON.parse(JSON.stringify(S.hlSet));delete d.text;delete d.surf;Object.assign(p.set,d)}p.title=title;return p}
-const makeHls=()=>HL_TITLES.map((t,k)=>makeHl(t,k));
+// the default covers: big soft rings coming in from different sides, three backgrounds
+const HL_LOOK=[{surf:'pink',cx:.12,cy:.88},{surf:'white',cx:.92,cy:.12},{surf:'dark',cx:.9,cy:.72},{surf:'pink',cx:.08,cy:.08},{surf:'white',cx:.4,cy:1.02}];
+const makeHls=()=>HL_TITLES.map((t,k)=>{const p=makeHl(t,k),L=HL_LOOK[k];if(!S.hlSet){p.set.surf=L.surf;p.set.tsize=.55;p.set.hits=[{cx:L.cx,cy:L.cy,step:.65,count:.35,warp:0,stick:false,dir:-50}]}return p});
 // ───────── merch: the print is edited like a post, shown on the garment ─────────
 // r = print area on the mockup (1200×1500 px), the print itself is 4:5
 const MERCH={front:{src:'merch/hoodie-front.webp',label:'худи спереди',r:[400,400,400,500]},back:{src:'merch/hoodie-back.webp',label:'худи сзади',r:[380,480,440,550]},tote:{src:'merch/tote.webp',label:'шоппер',r:[380,650,450,562]}};
@@ -347,7 +364,7 @@ function renderScene(mem,W,H,hideK,t=null){
   const tls=per.map((r,k)=>r.st.textOn!==false?textCached(W,H,r.st,su.ink,m,topSafe(W,H,m)-m+(r.lTop&&r.st.tpos==='top'?r.lb.h+gap0(md):0),r.lBot?r.lb.h+gap0(md):0,k===hideK):null);
   if(tls.some(Boolean)){const tw=document.createElement('canvas');tw.width=WW;tw.height=H;const tx=tw.getContext('2d');tls.forEach((t,k)=>t&&tx.drawImage(t,k*W,0));
     x.drawImage(AH.length?through(tw,{mode:2,transparent:true,pan:[0,0],zoom:1,rgb:0}):tw,0,0)}
-  for(const h of HS)if(h.stick&&AN.get(h).sa>0){const A=AN.get(h);stk.width=WW;stk.height=H;const sk=Math.sqrt(ringStep(h)*8/RING.size)*A.ss;Wave.stick(stk.getContext('2d'),WW,H,{on:true,cx:(h.cx+.03*sk+A.ox)/n,cy:h.cy-.02*sk+A.oy*W/H,angle:h.dir,grad:stickGrad(h,st0.surf),blur:.045,scale:sk,unit:W,len:S.tab==='merch'?.75:0});x.globalAlpha=A.sa;if(A.sb>.01)x.filter=`blur(${(A.sb*.05*W).toFixed(1)}px)`;x.drawImage(stk,0,0);x.filter='none';x.globalAlpha=1}
+  for(const h of HS)if(h.stick&&AN.get(h).sa>0){const A=AN.get(h);stk.width=WW;stk.height=H;const sk=Math.sqrt(ringStep(h)*8/RING.size)*A.ss;Wave.stick(stk.getContext('2d'),WW,H,{on:true,cx:(h.cx+.03*sk+A.ox)/n,cy:h.cy-.02*sk+A.oy*W/H,angle:h.dir,grad:stickGrad(h,st0.surf),blur:.045,scale:sk,unit:W});x.globalAlpha=A.sa;if(A.sb>.01)x.filter=`blur(${(A.sb*.05*W).toFixed(1)}px)`;x.drawImage(stk,0,0);x.filter='none';x.globalAlpha=1}
   // logos, each on its own post
   const f=r=>r&&{x:r.x/W,y:r.y/H,w:r.w/W,h:r.h/H};
   const boxes=per.map((r,k)=>{const st=r.st,lb=r.lb;
